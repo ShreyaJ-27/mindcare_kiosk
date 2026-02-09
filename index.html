@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>MindCare - Mental Health Kiosk</title>
+    <link rel="stylesheet" href="kiosk-style.css">
+</head>
+<body>
+    <!-- Kiosk Security Script -->
+    <script>
+        // Prevent right-click context menu
+        document.addEventListener("contextmenu", e => e.preventDefault());
+        
+        // Prevent F12, Ctrl+Shift+I, Ctrl+U and other dev tools shortcuts
+        document.addEventListener("keydown", e => {
+            if (e.key === "F12" || 
+                (e.ctrlKey && e.shiftKey && e.key === "I") ||
+                (e.ctrlKey && e.shiftKey && e.key === "J") ||
+                (e.ctrlKey && e.key === "U") ||
+                e.key === "F11") {
+                e.preventDefault();
+            }
+        });
+        
+        // Prevent text selection for kiosk mode
+        document.onselectstart = () => false;
+    </script>
+
+    <!-- Kiosk Header -->
+    <header class="kiosk-header">
+        <div class="container">
+            <h1 class="logo">🧠 MindCare Kiosk</h1>
+            <p class="tagline">Your Safe Space for Mental Wellbeing</p>
+        </div>
+    </header>
+
+    <!-- Main Navigation -->
+    <main class="kiosk-main">
+        <div class="container">
+            <div class="welcome-section">
+                <h2 class="welcome-title">Welcome! How Can We Help You Today?</h2>
+                <p class="welcome-subtitle">Tap any button below to get started</p>
+            </div>
+
+            <!-- Main Navigation Buttons -->
+            <div class="button-grid">
+                <!-- Self Assessment -->
+                <a href="quiz.html" class="kiosk-button primary">
+                    <div class="button-icon">📝</div>
+                    <div class="button-text">
+                        <h3>Self Assessment</h3>
+                        <p>Check your mental wellbeing</p>
+                    </div>
+                </a>
+
+                <!-- Awareness & Resources -->
+                <a href="awareness.html" class="kiosk-button secondary">
+                    <div class="button-icon">📚</div>
+                    <div class="button-text">
+                        <h3>Learn & Explore</h3>
+                        <p>Mental health awareness</p>
+                    </div>
+                </a>
+
+                <!-- Coping Tools -->
+                <a href="tools.html" class="kiosk-button accent">
+                    <div class="button-icon">🌱</div>
+                    <div class="button-text">
+                        <h3>Coping Tools</h3>
+                        <p>Breathing & relaxation</p>
+                    </div>
+                </a>
+
+                <!-- Emergency Support -->
+                <a href="emergency.html" class="kiosk-button emergency">
+                    <div class="button-icon">🆘</div>
+                    <div class="button-text">
+                        <h3>Need Help Now?</h3>
+                        <p>Emergency support</p>
+                    </div>
+                </a>
+
+                <!-- Helpline Numbers -->
+                <a href="helpline.html" class="kiosk-button info">
+                    <div class="button-icon">📞</div>
+                    <div class="button-text">
+                        <h3>Helpline Numbers</h3>
+                        <p>Talk to someone</p>
+                    </div>
+                </a>
+
+                <!-- Daily Affirmations -->
+                <a href="affirmations.html" class="kiosk-button positive">
+                    <div class="button-icon">💫</div>
+                    <div class="button-text">
+                        <h3>Daily Affirmations</h3>
+                        <p>Positive reminders</p>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </main>
+
+    <!-- Privacy Notice -->
+    <footer class="kiosk-footer">
+        <div class="container">
+            <div class="privacy-notice">
+                <p>🔒 <strong>Your Privacy Matters:</strong> No data is saved. Everything is private and confidential.</p>
+            </div>
+            <p class="footer-text">MindCare Kiosk © 2026 | Made with care for you 💙</p>
+        </div>
+    </footer>
+
+    <!-- Touch Feedback Script -->
+    <script>
+        // Add touch feedback to all buttons
+        document.querySelectorAll('.kiosk-button').forEach(button => {
+            button.addEventListener('touchstart', function() {
+                this.style.transform = 'scale(0.95)';
+            });
+            button.addEventListener('touchend', function() {
+                this.style.transform = 'scale(1)';
+            });
+        });
+    </script>
+</body>
+</html>
