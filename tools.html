@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>Coping Tools - MindCare Kiosk</title>
+    <link rel="stylesheet" href="kiosk-style.css">
+    <style>
+        .tools-container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .tool-card {
+            background: white;
+            border-radius: 20px;
+            padding: 50px;
+            margin-bottom: 40px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .tool-icon {
+            font-size: 80px;
+            margin-bottom: 20px;
+        }
+
+        .tool-card h2 {
+            font-size: 42px;
+            color: #667eea;
+            margin-bottom: 20px;
+        }
+
+        .tool-card p {
+            font-size: 26px;
+            color: #555;
+            line-height: 1.8;
+            margin-bottom: 30px;
+        }
+
+        .breathing-circle {
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            margin: 40px auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 36px;
+            font-weight: 700;
+            transition: transform 4s ease-in-out;
+            box-shadow: 0 10px 40px rgba(102, 126, 234, 0.4);
+        }
+
+        .breathing-circle.inhale {
+            transform: scale(1.5);
+        }
+
+        .breathing-circle.hold {
+            transform: scale(1.5);
+        }
+
+        .breathing-circle.exhale {
+            transform: scale(1);
+        }
+
+        .grounding-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+
+        .grounding-item {
+            background: #f7fafc;
+            padding: 30px;
+            border-radius: 15px;
+            border: 3px solid #667eea;
+            text-align: center;
+        }
+
+        .grounding-number {
+            font-size: 48px;
+            font-weight: 900;
+            color: #667eea;
+            margin-bottom: 10px;
+        }
+
+        .grounding-text {
+            font-size: 24px;
+            color: #333;
+            font-weight: 600;
+        }
+
+        .affirmation-box {
+            background: linear-gradient(135deg, #48bb78 0%, #38a169 100%);
+            color: white;
+            padding: 40px;
+            border-radius: 20px;
+            font-size: 32px;
+            font-weight: 600;
+            text-align: center;
+            margin: 30px 0;
+            min-height: 150px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            line-height: 1.6;
+        }
+
+        .instruction-step {
+            background: #e6f7ff;
+            border-left: 6px solid #4299e1;
+            padding: 25px;
+            margin: 20px 0;
+            border-radius: 10px;
+            font-size: 24px;
+            color: #333;
+            text-align: left;
+        }
+
+        .instruction-step strong {
+            color: #4299e1;
+            font-size: 26px;
+        }
+
+        @media (max-width: 768px) {
+            .breathing-circle {
+                width: 250px;
+                height: 250px;
+                font-size: 30px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Kiosk Security -->
+    <script>
+        document.addEventListener("contextmenu", e => e.preventDefault());
+        document.addEventListener("keydown", e => {
+            if (e.key === "F12" || (e.ctrlKey && e.shiftKey)) e.preventDefault();
+        });
+    </script>
+
+    <!-- Back Button -->
+    <a href="index.html" class="back-button">← Home</a>
+
+    <!-- Header -->
+    <div class="page-header">
+        <h1>🌱 Coping Tools</h1>
+        <p>Simple techniques to calm your mind and body</p>
+    </div>
+
+    <!-- Main Content -->
+    <main class="kiosk-main">
+        <div class="container">
+            <div class="tools-container">
+                
+                <!-- Breathing Exercise -->
+                <div class="tool-card">
+                    <div class="tool-icon">🫁</div>
+                    <h2>Deep Breathing Exercise</h2>
+                    <p>Follow the circle to calm your nervous system. This simple technique can reduce anxiety and stress in just a few minutes.</p>
+                    
+                    <div class="breathing-circle" id="breathingCircle">
+                        <span id="breathingText">Tap Start</span>
+                    </div>
+                    
+                    <button class="action-button" id="breathingButton" onclick="startBreathing()">
+                        Start Breathing Exercise
+                    </button>
+                    <button class="action-button" id="stopButton" onclick="stopBreathing()" style="display: none; background: #f56565;">
+                        Stop Exercise
+                    </button>
+
+                    <div class="instruction-step">
+                        <strong>How it works:</strong> The circle will grow (breathe in), pause (hold), and shrink (breathe out). Follow along with your breathing.
+                    </div>
+                </div>
+
+                <!-- 5-4-3-2-1 Grounding -->
+                <div class="tool-card">
+                    <div class="tool-icon">🧘</div>
+                    <h2>5-4-3-2-1 Grounding Technique</h2>
+                    <p>When you feel anxious or overwhelmed, use your senses to ground yourself in the present moment.</p>
+                    
+                    <div class="grounding-grid">
+                        <div class="grounding-item">
+                            <div class="grounding-number">5</div>
+                            <div class="grounding-text">Things you SEE</div>
+                        </div>
+                        <div class="grounding-item">
+                            <div class="grounding-number">4</div>
+                            <div class="grounding-text">Things you TOUCH</div>
+                        </div>
+                        <div class="grounding-item">
+                            <div class="grounding-number">3</div>
+                            <div class="grounding-text">Things you HEAR</div>
+                        </div>
+                        <div class="grounding-item">
+                            <div class="grounding-number">2</div>
+                            <div class="grounding-text">Things you SMELL</div>
+                        </div>
+                        <div class="grounding-item">
+                            <div class="grounding-number">1</div>
+                            <div class="grounding-text">Thing you TASTE</div>
+                        </div>
+                    </div>
+
+                    <div class="instruction-step">
+                        <strong>Instructions:</strong> Slowly identify each item out loud or in your mind. Take your time. This brings your attention to the present and away from anxiety.
+                    </div>
+                </div>
+
+                <!-- Progressive Muscle Relaxation -->
+                <div class="tool-card">
+                    <div class="tool-icon">💪</div>
+                    <h2>Progressive Muscle Relaxation</h2>
+                    <p>Release physical tension by tensing and relaxing different muscle groups.</p>
+                    
+                    <div class="instruction-step">
+                        <strong>Step 1:</strong> Start with your toes. Curl them tightly for 5 seconds, then release.
+                    </div>
+                    <div class="instruction-step">
+                        <strong>Step 2:</strong> Move to your calves. Tense for 5 seconds, then release.
+                    </div>
+                    <div class="instruction-step">
+                        <strong>Step 3:</strong> Continue up your body: thighs, stomach, hands, arms, shoulders, face.
+                    </div>
+                    <div class="instruction-step">
+                        <strong>Step 4:</strong> Notice the difference between tension and relaxation. Your body will feel looser and calmer.
+                    </div>
+
+                    <p style="font-size: 22px; color: #48bb78; margin-top: 30px;">
+                        💡 Do this lying down or sitting comfortably. It takes about 10-15 minutes.
+                    </p>
+                </div>
+
+                <!-- Daily Affirmations -->
+                <div class="tool-card">
+                    <div class="tool-icon">💫</div>
+                    <h2>Positive Affirmations</h2>
+                    <p>Kind words to remind yourself of your worth and strength.</p>
+                    
+                    <div class="affirmation-box" id="affirmationBox">
+                        I am worthy of love and kindness
+                    </div>
+
+                    <button class="action-button" onclick="showNewAffirmation()">
+                        ✨ Show Another Affirmation
+                    </button>
+
+                    <div class="instruction-step">
+                        <strong>How to use:</strong> Read the affirmation slowly. Take a deep breath. Repeat it to yourself. Let it sink in. You can say it out loud or silently.
+                    </div>
+                </div>
+
+                <!-- Safe Place Visualization -->
+                <div class="tool-card">
+                    <div class="tool-icon">🏝️</div>
+                    <h2>Safe Place Visualization</h2>
+                    <p>Create a calm mental space you can visit anytime.</p>
+                    
+                    <div class="instruction-step">
+                        <strong>Close your eyes</strong> (or keep them open if more comfortable)
+                    </div>
+                    <div class="instruction-step">
+                        <strong>Imagine a place</strong> where you feel completely safe and peaceful. It could be real or imaginary - a beach, forest, cozy room, anywhere you feel calm.
+                    </div>
+                    <div class="instruction-step">
+                        <strong>Notice the details:</strong> What do you see? What sounds do you hear? What can you smell? How does it feel?
+                    </div>
+                    <div class="instruction-step">
+                        <strong>Stay there</strong> for a few minutes. Breathe slowly. When you're ready, gently open your eyes.
+                    </div>
+
+                    <p style="font-size: 22px; color: #667eea; margin-top: 30px;">
+                        💡 You can return to this safe place whenever you feel stressed or overwhelmed.
+                    </p>
+                </div>
+
+                <!-- Quick Calm Tips -->
+                <div class="tool-card" style="background: linear-gradient(135deg, #ed8936 0%, #dd6b20 100%); color: white;">
+                    <div class="tool-icon">⚡</div>
+                    <h2 style="color: white;">Quick Calm Tips (30 Seconds or Less)</h2>
+                    
+                    <div style="text-align: left; font-size: 24px; line-height: 2;">
+                        ✓ Splash cold water on your face<br>
+                        ✓ Count backwards from 10 slowly<br>
+                        ✓ Name 3 things you can see around you<br>
+                        ✓ Press your feet firmly into the ground<br>
+                        ✓ Stretch your arms up and take a deep breath<br>
+                        ✓ Say "I am safe right now" three times<br>
+                        ✓ Hold an ice cube in your hand<br>
+                        ✓ Listen to calming music
+                    </div>
+                </div>
+
+                <!-- Action Buttons -->
+                <div style="text-align: center; margin-top: 50px;">
+                    <div style="background: white; padding: 40px; border-radius: 20px; box-shadow: 0 6px 20px rgba(0,0,0,0.1);">
+                        <h3 style="font-size: 36px; color: #667eea; margin-bottom: 30px;">Still Feeling Overwhelmed?</h3>
+                        <div style="display: flex; gap: 20px; justify-content: center; flex-wrap: wrap;">
+                            <a href="helpline.html" class="action-button" style="background: #4299e1;">📞 Talk to Someone</a>
+                            <a href="emergency.html" class="action-button" style="background: #f56565;">🆘 Emergency Help</a>
+                            <a href="awareness.html" class="action-button" style="background: #48bb78;">📚 Learn More</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="kiosk-footer">
+        <div class="container">
+            <div class="privacy-notice" style="background: #e6fffa; border-color: #48bb78;">
+                <p>💚 <strong>Remember:</strong> These tools work best with practice. Be patient and kind with yourself.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Breathing Exercise
+        let breathingInterval;
+        let isBreathing = false;
+
+        function startBreathing() {
+            if (isBreathing) return;
+            
+            isBreathing = true;
+            document.getElementById('breathingButton').style.display = 'none';
+            document.getElementById('stopButton').style.display = 'inline-block';
+            
+            const circle = document.getElementById('breathingCircle');
+            const text = document.getElementById('breathingText');
+            
+            let phase = 0;
+            const phases = [
+                { text: 'Breathe In...', class: 'inhale', duration: 4000 },
+                { text: 'Hold...', class: 'hold', duration: 4000 },
+                { text: 'Breathe Out...', class: 'exhale', duration: 4000 },
+                { text: 'Rest...', class: '', duration: 2000 }
+            ];
+            
+            function cycle() {
+                const currentPhase = phases[phase];
+                text.textContent = currentPhase.text;
+                circle.className = 'breathing-circle ' + currentPhase.class;
+                
+                phase = (phase + 1) % phases.length;
+            }
+            
+            cycle();
+            breathingInterval = setInterval(cycle, 4000);
+        }
+
+        function stopBreathing() {
+            isBreathing = false;
+            clearInterval(breathingInterval);
+            document.getElementById('breathingButton').style.display = 'inline-block';
+            document.getElementById('stopButton').style.display = 'none';
+            document.getElementById('breathingCircle').className = 'breathing-circle';
+            document.getElementById('breathingText').textContent = 'Tap Start';
+        }
+
+        // Affirmations
+        const affirmations = [
+            "I am worthy of love and kindness",
+            "My feelings are valid and important",
+            "I am doing the best I can today",
+            "It's okay to ask for help",
+            "I am stronger than I know",
+            "Progress, not perfection",
+            "I deserve peace and happiness",
+            "I am enough, just as I am",
+            "This difficult moment will pass",
+            "I choose to be kind to myself",
+            "My mental health matters",
+            "I am brave for facing my challenges",
+            "I trust myself to handle what comes",
+            "I am worthy of rest and self-care",
+            "Every small step forward counts"
+        ];
+
+        let currentAffirmationIndex = 0;
+
+        function showNewAffirmation() {
+            currentAffirmationIndex = (currentAffirmationIndex + 1) % affirmations.length;
+            document.getElementById('affirmationBox').textContent = affirmations[currentAffirmationIndex];
+        }
+    </script>
+</body>
+</html>
