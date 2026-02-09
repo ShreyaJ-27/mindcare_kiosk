@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>Self Assessment - MindCare Kiosk</title>
+    <link rel="stylesheet" href="kiosk-style.css">
+    <style>
+        .quiz-container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .question-card {
+            background: white;
+            border-radius: 20px;
+            padding: 50px;
+            margin-bottom: 40px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .question-number {
+            font-size: 24px;
+            color: #667eea;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+
+        .question-text {
+            font-size: 32px;
+            color: #333;
+            margin-bottom: 35px;
+            line-height: 1.5;
+        }
+
+        .answer-options {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .answer-button {
+            background: #f7fafc;
+            border: 4px solid #e2e8f0;
+            border-radius: 15px;
+            padding: 25px 30px;
+            font-size: 26px;
+            color: #333;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: left;
+        }
+
+        .answer-button:hover {
+            background: #667eea;
+            color: white;
+            border-color: #667eea;
+            transform: translateX(10px);
+        }
+
+        .answer-button:active {
+            transform: scale(0.98);
+        }
+
+        .progress-bar {
+            background: #e2e8f0;
+            height: 15px;
+            border-radius: 10px;
+            margin-bottom: 40px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            background: linear-gradient(90deg, #667eea, #764ba2);
+            height: 100%;
+            width: 0%;
+            transition: width 0.5s ease;
+        }
+
+        .result-section {
+            display: none;
+            text-align: center;
+        }
+
+        .result-card {
+            background: white;
+            border-radius: 20px;
+            padding: 50px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .result-icon {
+            font-size: 100px;
+            margin-bottom: 20px;
+        }
+
+        .result-title {
+            font-size: 42px;
+            color: #667eea;
+            margin-bottom: 20px;
+        }
+
+        .result-description {
+            font-size: 24px;
+            color: #555;
+            line-height: 1.8;
+            margin-bottom: 30px;
+        }
+
+        .result-score {
+            font-size: 28px;
+            color: #48bb78;
+            font-weight: 700;
+            margin-bottom: 40px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Kiosk Security -->
+    <script>
+        document.addEventListener("contextmenu", e => e.preventDefault());
+        document.addEventListener("keydown", e => {
+            if (e.key === "F12" || (e.ctrlKey && e.shiftKey)) e.preventDefault();
+        });
+    </script>
+
+    <!-- Back Button -->
+    <a href="index.html" class="back-button">← Home</a>
+
+    <!-- Header -->
+    <div class="page-header">
+        <h1>📝 Mental Wellbeing Assessment</h1>
+        <p>Answer honestly - there are no wrong answers</p>
+    </div>
+
+    <!-- Main Content -->
+    <main class="kiosk-main">
+        <div class="container">
+            <div class="quiz-container">
+                <!-- Progress Bar -->
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progressBar"></div>
+                </div>
+
+                <!-- Quiz Section -->
+                <div id="quizSection">
+                    <div class="question-card" id="questionCard">
+                        <div class="question-number" id="questionNumber">Question 1 of 10</div>
+                        <div class="question-text" id="questionText"></div>
+                        <div class="answer-options" id="answerOptions"></div>
+                    </div>
+                </div>
+
+                <!-- Result Section -->
+                <div id="resultSection" class="result-section">
+                    <div class="result-card">
+                        <div class="result-icon" id="resultIcon"></div>
+                        <h2 class="result-title" id="resultTitle"></h2>
+                        <p class="result-description" id="resultDescription"></p>
+                        <div class="result-score" id="resultScore"></div>
+                        
+                        <div style="display: flex; gap: 20px; justify-content: center; flex-wrap: wrap;">
+                            <a href="helpline.html" class="action-button">📞 View Helplines</a>
+                            <a href="tools.html" class="action-button">🌱 Coping Tools</a>
+                            <a href="index.html" class="action-button">🏠 Back Home</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="kiosk-footer">
+        <div class="container">
+            <div class="privacy-notice">
+                <p>🔒 <strong>Your responses are completely private</strong> - nothing is saved or shared</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const questions = [
+            {
+                question: "How often have you felt down, depressed, or hopeless in the past 2 weeks?",
+                answers: [
+                    { text: "Not at all", score: 0 },
+                    { text: "Several days", score: 1 },
+                    { text: "More than half the days", score: 2 },
+                    { text: "Nearly every day", score: 3 }
+                ]
+            },
+            {
+                question: "How often have you had little interest or pleasure in doing things?",
+                answers: [
+                    { text: "Not at all", score: 0 },
+                    { text: "Several days", score: 1 },
+                    { text: "More than half the days", score: 2 },
+                    { text: "Nearly every day", score: 3 }
+                ]
+            },
+            {
+                question: "How often have you felt nervous, anxious, or on edge?",
+                answers: [
+                    { text: "Not at all", score: 0 },
+                    { text: "Several days", score: 1 },
+                    { text: "More than half the days", score: 2 },
+                    { text: "Nearly every day", score: 3 }
+                ]
+            },
+            {
+                question: "How often have you been unable to stop or control worrying?",
+                answers: [
+                    { text: "Not at all", score: 0 },
+                    { text: "Several days", score: 1 },
+                    { text: "More than half the days", score: 2 },
+                    { text: "Nearly every day", score: 3 }
+                ]
+            },
+            {
+                question: "How has your sleep been lately?",
+                answers: [
+                    { text: "Sleeping well", score: 0 },
+                    { text: "Some difficulty sleeping", score: 1 },
+                    { text: "Often have trouble sleeping", score: 2 },
+                    { text: "Severe sleep problems", score: 3 }
+                ]
+            },
+            {
+                question: "How would you rate your stress levels?",
+                answers: [
+                    { text: "Low stress", score: 0 },
+                    { text: "Moderate stress", score: 1 },
+                    { text: "High stress", score: 2 },
+                    { text: "Overwhelming stress", score: 3 }
+                ]
+            },
+            {
+                question: "How often do you feel overwhelmed by daily tasks?",
+                answers: [
+                    { text: "Rarely or never", score: 0 },
+                    { text: "Sometimes", score: 1 },
+                    { text: "Often", score: 2 },
+                    { text: "Almost always", score: 3 }
+                ]
+            },
+            {
+                question: "How often do you feel you have support from friends or family?",
+                answers: [
+                    { text: "Always feel supported", score: 0 },
+                    { text: "Usually feel supported", score: 1 },
+                    { text: "Sometimes feel alone", score: 2 },
+                    { text: "Often feel isolated", score: 3 }
+                ]
+            },
+            {
+                question: "How is your appetite or eating habits?",
+                answers: [
+                    { text: "Normal and healthy", score: 0 },
+                    { text: "Slightly changed", score: 1 },
+                    { text: "Significantly changed", score: 2 },
+                    { text: "Severely affected", score: 3 }
+                ]
+            },
+            {
+                question: "How would you rate your overall mental wellbeing right now?",
+                answers: [
+                    { text: "Good - feeling well", score: 0 },
+                    { text: "Okay - managing", score: 1 },
+                    { text: "Struggling - need support", score: 2 },
+                    { text: "Very difficult - need help", score: 3 }
+                ]
+            }
+        ];
+
+        let currentQuestion = 0;
+        let totalScore = 0;
+
+        function displayQuestion() {
+            const q = questions[currentQuestion];
+            document.getElementById('questionNumber').textContent = `Question ${currentQuestion + 1} of ${questions.length}`;
+            document.getElementById('questionText').textContent = q.question;
+            
+            const optionsContainer = document.getElementById('answerOptions');
+            optionsContainer.innerHTML = '';
+            
+            q.answers.forEach((answer, index) => {
+                const button = document.createElement('button');
+                button.className = 'answer-button';
+                button.textContent = answer.text;
+                button.onclick = () => selectAnswer(answer.score);
+                optionsContainer.appendChild(button);
+            });
+
+            // Update progress
+            const progress = ((currentQuestion) / questions.length) * 100;
+            document.getElementById('progressBar').style.width = progress + '%';
+        }
+
+        function selectAnswer(score) {
+            totalScore += score;
+            currentQuestion++;
+
+            if (currentQuestion < questions.length) {
+                displayQuestion();
+            } else {
+                showResults();
+            }
+        }
+
+        function showResults() {
+            document.getElementById('progressBar').style.width = '100%';
+            document.getElementById('quizSection').style.display = 'none';
+            document.getElementById('resultSection').style.display = 'block';
+
+            let icon, title, description, scoreText;
+            const maxScore = questions.length * 3;
+            const percentage = Math.round((totalScore / maxScore) * 100);
+
+            if (totalScore <= 7) {
+                icon = '🌟';
+                title = 'You\'re Doing Great!';
+                description = 'Your responses suggest good mental wellbeing. Keep taking care of yourself with healthy habits, exercise, and maintaining connections with others.';
+                scoreText = `Wellbeing Score: ${percentage}%`;
+            } else if (totalScore <= 14) {
+                icon = '🌤️';
+                title = 'You\'re Managing Well';
+                description = 'You may be experiencing some stress or mild symptoms. This is normal, but consider using coping tools and talking to someone if things feel difficult.';
+                scoreText = `Wellbeing Score: ${percentage}%`;
+            } else if (totalScore <= 21) {
+                icon = '🌧️';
+                title = 'You Could Use Some Support';
+                description = 'Your responses suggest you\'re struggling with your mental health. It\'s important to reach out for support. Consider talking to a counselor, trusted adult, or calling a helpline.';
+                scoreText = `Wellbeing Score: ${percentage}%`;
+            } else {
+                icon = '🆘';
+                title = 'Please Reach Out for Help';
+                description = 'You\'re experiencing significant difficulties. Please don\'t face this alone. Talk to a trusted adult, counselor, or call a helpline today. You deserve support and things can get better.';
+                scoreText = `Wellbeing Score: ${percentage}% - Support Needed`;
+            }
+
+            document.getElementById('resultIcon').textContent = icon;
+            document.getElementById('resultTitle').textContent = title;
+            document.getElementById('resultDescription').textContent = description;
+            document.getElementById('resultScore').textContent = scoreText;
+        }
+
+        // Initialize quiz
+        displayQuestion();
+    </script>
+</body>
+</html>
