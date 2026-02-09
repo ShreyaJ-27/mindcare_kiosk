@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>Emergency Support - MindCare Kiosk</title>
+    <link rel="stylesheet" href="kiosk-style.css">
+    <style>
+        .emergency-container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .urgent-alert {
+            background: linear-gradient(135deg, #f56565 0%, #c53030 100%);
+            color: white;
+            padding: 40px;
+            border-radius: 20px;
+            text-align: center;
+            margin-bottom: 40px;
+            box-shadow: 0 8px 25px rgba(245, 101, 101, 0.4);
+            animation: pulse-glow 2s infinite;
+        }
+
+        @keyframes pulse-glow {
+            0%, 100% {
+                box-shadow: 0 8px 25px rgba(245, 101, 101, 0.4);
+            }
+            50% {
+                box-shadow: 0 8px 35px rgba(245, 101, 101, 0.7);
+            }
+        }
+
+        .urgent-alert h2 {
+            font-size: 42px;
+            margin-bottom: 15px;
+        }
+
+        .urgent-alert p {
+            font-size: 26px;
+            line-height: 1.6;
+        }
+
+        .crisis-number {
+            background: white;
+            color: #f56565;
+            padding: 30px;
+            border-radius: 15px;
+            font-size: 48px;
+            font-weight: 900;
+            margin: 20px 0;
+            letter-spacing: 2px;
+        }
+
+        .help-card {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            margin-bottom: 30px;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .help-card h3 {
+            font-size: 36px;
+            color: #667eea;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .help-card p {
+            font-size: 24px;
+            line-height: 1.8;
+            color: #555;
+            margin-bottom: 15px;
+        }
+
+        .help-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .help-list li {
+            font-size: 24px;
+            padding: 20px;
+            background: #f7fafc;
+            margin-bottom: 15px;
+            border-radius: 12px;
+            border-left: 6px solid #667eea;
+        }
+
+        .help-list li strong {
+            color: #667eea;
+            font-size: 26px;
+        }
+
+        .safety-plan {
+            background: linear-gradient(135deg, #48bb78 0%, #38a169 100%);
+            color: white;
+            padding: 40px;
+            border-radius: 20px;
+            margin-top: 40px;
+        }
+
+        .safety-plan h3 {
+            font-size: 38px;
+            margin-bottom: 25px;
+        }
+
+        .safety-plan p {
+            font-size: 24px;
+            line-height: 1.8;
+            margin-bottom: 15px;
+        }
+
+        .safety-step {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 20px;
+            border-radius: 12px;
+            margin-bottom: 15px;
+            font-size: 24px;
+        }
+
+        .safety-step strong {
+            font-size: 28px;
+            display: block;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Kiosk Security -->
+    <script>
+        document.addEventListener("contextmenu", e => e.preventDefault());
+        document.addEventListener("keydown", e => {
+            if (e.key === "F12" || (e.ctrlKey && e.shiftKey)) e.preventDefault();
+        });
+    </script>
+
+    <!-- Back Button -->
+    <a href="index.html" class="back-button">← Home</a>
+
+    <!-- Header -->
+    <div class="page-header" style="background: linear-gradient(135deg, #f56565 0%, #c53030 100%); color: white;">
+        <h1>🆘 Emergency Support</h1>
+        <p>If you're in crisis, you're not alone - help is available right now</p>
+    </div>
+
+    <!-- Main Content -->
+    <main class="kiosk-main">
+        <div class="container">
+            <div class="emergency-container">
+                <!-- Urgent Alert -->
+                <div class="urgent-alert">
+                    <h2>🚨 If You're In Immediate Danger</h2>
+                    <p>Call emergency services or go to the nearest hospital emergency room</p>
+                    <div class="crisis-number">112 (Emergency)</div>
+                    <p style="font-size: 22px; margin-top: 15px;">Available 24/7 across India</p>
+                </div>
+
+                <!-- Crisis Helplines -->
+                <div class="help-card">
+                    <h3>📞 24/7 Crisis Helplines</h3>
+                    <p>These helplines are answered by trained professionals who care and want to help:</p>
+                    <ul class="help-list">
+                        <li>
+                            <strong>Suicide Prevention Helpline</strong><br>
+                            Call: 9152987821 (Available 24/7)<br>
+                            Trained counselors available immediately
+                        </li>
+                        <li>
+                            <strong>Vandrevala Foundation</strong><br>
+                            Call: 1860-2662-345<br>
+                            Mental health support and crisis intervention
+                        </li>
+                        <li>
+                            <strong>Kiran Mental Health Helpline</strong><br>
+                            Call: 1800-599-0019<br>
+                            Free, confidential support
+                        </li>
+                        <li>
+                            <strong>iCall Helpline (TISS)</strong><br>
+                            Call: 9152987821<br>
+                            Email: icall@tiss.edu<br>
+                            Mon-Sat, 8 AM - 10 PM
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- What to Expect -->
+                <div class="help-card">
+                    <h3>💬 What to Expect When You Call</h3>
+                    <p>Calling a helpline can feel scary, but here's what will happen:</p>
+                    <ul class="help-list">
+                        <li>✓ A trained, caring person will answer</li>
+                        <li>✓ They will listen without judgment</li>
+                        <li>✓ Everything you say is confidential</li>
+                        <li>✓ They will help you feel safer and less alone</li>
+                        <li>✓ They can connect you with local resources</li>
+                        <li>✓ You can talk for as long as you need</li>
+                    </ul>
+                </div>
+
+                <!-- Signs You Need Help Now -->
+                <div class="help-card">
+                    <h3>⚠️ Signs You Need Help Right Now</h3>
+                    <p>Please reach out immediately if you're experiencing:</p>
+                    <ul class="help-list">
+                        <li>Thoughts of hurting yourself or others</li>
+                        <li>Feeling hopeless or trapped with no way out</li>
+                        <li>Severe panic or overwhelming anxiety</li>
+                        <li>Hearing voices or seeing things others don't</li>
+                        <li>Intense mood swings affecting your safety</li>
+                        <li>Unable to take care of basic needs</li>
+                    </ul>
+                </div>
+
+                <!-- Immediate Safety Steps -->
+                <div class="safety-plan">
+                    <h3>🛡️ Right Now: Keep Yourself Safe</h3>
+                    
+                    <div class="safety-step">
+                        <strong>1. Remove any means of harm</strong>
+                        If you're having thoughts of self-harm, move away from anything that could hurt you. Go to a safe space.
+                    </div>
+
+                    <div class="safety-step">
+                        <strong>2. Call a crisis helpline immediately</strong>
+                        Dial 9152987821 or 1860-2662-345. A caring person is ready to help you right now.
+                    </div>
+
+                    <div class="safety-step">
+                        <strong>3. Tell someone you trust</strong>
+                        Reach out to a family member, friend, teacher, or counselor. You don't have to face this alone.
+                    </div>
+
+                    <div class="safety-step">
+                        <strong>4. If alone, stay in a public place</strong>
+                        Being around others can help you feel safer until you can get professional help.
+                    </div>
+
+                    <div class="safety-step">
+                        <strong>5. Use grounding techniques</strong>
+                        Name 5 things you see, 4 things you can touch, 3 things you hear, 2 things you smell, 1 thing you taste. This can help during panic.
+                    </div>
+                </div>
+
+                <!-- Action Buttons -->
+                <div style="text-align: center; margin-top: 50px;">
+                    <div style="background: white; padding: 40px; border-radius: 20px; box-shadow: 0 6px 20px rgba(0,0,0,0.1);">
+                        <h3 style="font-size: 36px; color: #667eea; margin-bottom: 30px;">What Would Help You Right Now?</h3>
+                        <div style="display: flex; gap: 20px; justify-content: center; flex-wrap: wrap;">
+                            <a href="helpline.html" class="action-button" style="background: #f56565;">📞 View All Helplines</a>
+                            <a href="tools.html" class="action-button" style="background: #48bb78;">🌱 Try Calming Tools</a>
+                            <a href="awareness.html" class="action-button" style="background: #4299e1;">📚 Learn More</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="kiosk-footer">
+        <div class="container">
+            <div class="privacy-notice" style="background: #fff3cd; border-color: #ed8936;">
+                <p style="color: #c05621;">⚠️ <strong>Remember:</strong> This kiosk is for information only. In a crisis, please call emergency services or a helpline immediately.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
