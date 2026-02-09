@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>Daily Affirmations - MindCare Kiosk</title>
+    <link rel="stylesheet" href="kiosk-style.css">
+    <style>
+        .affirmations-container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .affirmation-display {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 80px 50px;
+            border-radius: 30px;
+            text-align: center;
+            margin-bottom: 50px;
+            box-shadow: 0 15px 40px rgba(102, 126, 234, 0.4);
+            min-height: 350px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .affirmation-icon {
+            font-size: 100px;
+            margin-bottom: 30px;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        .affirmation-text {
+            font-size: 48px;
+            font-weight: 700;
+            line-height: 1.4;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        .affirmation-category {
+            font-size: 24px;
+            margin-top: 25px;
+            opacity: 0.9;
+            font-weight: 300;
+        }
+
+        .control-buttons {
+            display: flex;
+            gap: 25px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 50px;
+        }
+
+        .affirmation-list {
+            background: white;
+            border-radius: 20px;
+            padding: 50px;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .affirmation-list h2 {
+            font-size: 42px;
+            color: #667eea;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .category-section {
+            margin-bottom: 40px;
+        }
+
+        .category-title {
+            font-size: 32px;
+            color: #48bb78;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 3px solid #e2e8f0;
+        }
+
+        .affirmation-item {
+            background: #f7fafc;
+            padding: 25px 30px;
+            border-radius: 15px;
+            margin-bottom: 15px;
+            font-size: 26px;
+            color: #333;
+            border-left: 6px solid #667eea;
+            line-height: 1.6;
+        }
+
+        @media (max-width: 768px) {
+            .affirmation-display {
+                padding: 60px 30px;
+                min-height: 300px;
+            }
+
+            .affirmation-text {
+                font-size: 36px;
+            }
+
+            .affirmation-icon {
+                font-size: 80px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Kiosk Security -->
+    <script>
+        document.addEventListener("contextmenu", e => e.preventDefault());
+        document.addEventListener("keydown", e => {
+            if (e.key === "F12" || (e.ctrlKey && e.shiftKey)) e.preventDefault();
+        });
+    </script>
+
+    <!-- Back Button -->
+    <a href="index.html" class="back-button">← Home</a>
+
+    <!-- Header -->
+    <div class="page-header">
+        <h1>💫 Daily Affirmations</h1>
+        <p>Positive reminders to carry with you</p>
+    </div>
+
+    <!-- Main Content -->
+    <main class="kiosk-main">
+        <div class="container">
+            <div class="affirmations-container">
+                
+                <!-- Affirmation Display -->
+                <div class="affirmation-display" id="affirmationDisplay">
+                    <div class="affirmation-icon" id="affirmationIcon">✨</div>
+                    <div class="affirmation-text" id="affirmationText">
+                        I am worthy of love and kindness
+                    </div>
+                    <div class="affirmation-category" id="affirmationCategory">Self-Worth</div>
+                </div>
+
+                <!-- Control Buttons -->
+                <div class="control-buttons">
+                    <button class="action-button" onclick="showRandomAffirmation()">
+                        🎲 Random Affirmation
+                    </button>
+                    <button class="action-button" onclick="showNextAffirmation()" style="background: #48bb78;">
+                        ▶️ Next Affirmation
+                    </button>
+                    <button class="action-button" onclick="showPreviousAffirmation()" style="background: #ed8936;">
+                        ◀️ Previous
+                    </button>
+                </div>
+
+                <!-- How to Use -->
+                <div class="content-card" style="margin-bottom: 40px;">
+                    <h2>🌟 How to Use Affirmations</h2>
+                    <p style="font-size: 24px; line-height: 1.8; color: #555;">
+                        <strong>1. Read slowly:</strong> Take your time with each word<br>
+                        <strong>2. Breathe deeply:</strong> Inhale calm, exhale tension<br>
+                        <strong>3. Repeat it:</strong> Say it to yourself 3 times<br>
+                        <strong>4. Feel it:</strong> Let the words sink into your heart<br>
+                        <strong>5. Believe it:</strong> You deserve these kind words
+                    </p>
+                </div>
+
+                <!-- All Affirmations List -->
+                <div class="affirmation-list">
+                    <h2>📖 All Affirmations</h2>
+
+                    <div class="category-section">
+                        <h3 class="category-title">💪 Strength & Resilience</h3>
+                        <div class="affirmation-item">I am stronger than I know</div>
+                        <div class="affirmation-item">I have overcome challenges before, and I can do it again</div>
+                        <div class="affirmation-item">I am brave for facing my challenges</div>
+                        <div class="affirmation-item">I trust myself to handle what comes</div>
+                        <div class="affirmation-item">I am growing and learning every day</div>
+                    </div>
+
+                    <div class="category-section">
+                        <h3 class="category-title">💝 Self-Worth & Acceptance</h3>
+                        <div class="affirmation-item">I am worthy of love and kindness</div>
+                        <div class="affirmation-item">I am enough, just as I am</div>
+                        <div class="affirmation-item">I deserve peace and happiness</div>
+                        <div class="affirmation-item">I am worthy of rest and self-care</div>
+                        <div class="affirmation-item">I accept myself completely</div>
+                    </div>
+
+                    <div class="category-section">
+                        <h3 class="category-title">🌱 Growth & Progress</h3>
+                        <div class="affirmation-item">Progress, not perfection</div>
+                        <div class="affirmation-item">Every small step forward counts</div>
+                        <div class="affirmation-item">I am doing the best I can today</div>
+                        <div class="affirmation-item">I celebrate my progress, no matter how small</div>
+                        <div class="affirmation-item">I am becoming a better version of myself</div>
+                    </div>
+
+                    <div class="category-section">
+                        <h3 class="category-title">💭 Emotions & Feelings</h3>
+                        <div class="affirmation-item">My feelings are valid and important</div>
+                        <div class="affirmation-item">It's okay to not be okay sometimes</div>
+                        <div class="affirmation-item">I allow myself to feel my emotions</div>
+                        <div class="affirmation-item">This difficult moment will pass</div>
+                        <div class="affirmation-item">I am learning to understand my emotions better</div>
+                    </div>
+
+                    <div class="category-section">
+                        <h3 class="category-title">🤝 Support & Connection</h3>
+                        <div class="affirmation-item">It's okay to ask for help</div>
+                        <div class="affirmation-item">I am not alone in this journey</div>
+                        <div class="affirmation-item">I am surrounded by people who care</div>
+                        <div class="affirmation-item">Asking for help is a sign of strength</div>
+                        <div class="affirmation-item">I deserve support and understanding</div>
+                    </div>
+
+                    <div class="category-section">
+                        <h3 class="category-title">🌟 Self-Compassion</h3>
+                        <div class="affirmation-item">I choose to be kind to myself</div>
+                        <div class="affirmation-item">I forgive myself for my mistakes</div>
+                        <div class="affirmation-item">I treat myself with the same kindness I show others</div>
+                        <div class="affirmation-item">I am patient with myself</div>
+                        <div class="affirmation-item">I speak to myself with love and respect</div>
+                    </div>
+
+                    <div class="category-section">
+                        <h3 class="category-title">✨ Hope & Positivity</h3>
+                        <div class="affirmation-item">Better days are ahead</div>
+                        <div class="affirmation-item">I choose hope over fear</div>
+                        <div class="affirmation-item">I am creating a life I love</div>
+                        <div class="affirmation-item">Good things are coming my way</div>
+                        <div class="affirmation-item">I believe in my ability to heal and grow</div>
+                    </div>
+
+                    <div class="category-section">
+                        <h3 class="category-title">🧘 Mental Health</h3>
+                        <div class="affirmation-item">My mental health matters</div>
+                        <div class="affirmation-item">Taking care of my mental health is a priority</div>
+                        <div class="affirmation-item">I am learning healthy ways to cope</div>
+                        <div class="affirmation-item">My healing journey is my own</div>
+                        <div class="affirmation-item">I am committed to my wellbeing</div>
+                    </div>
+                </div>
+
+                <!-- Action Buttons -->
+                <div style="text-align: center; margin-top: 50px;">
+                    <div style="background: white; padding: 40px; border-radius: 20px; box-shadow: 0 6px 20px rgba(0,0,0,0.1);">
+                        <h3 style="font-size: 36px; color: #667eea; margin-bottom: 30px;">Continue Your Journey</h3>
+                        <div style="display: flex; gap: 20px; justify-content: center; flex-wrap: wrap;">
+                            <a href="tools.html" class="action-button" style="background: #48bb78;">🌱 Try Coping Tools</a>
+                            <a href="quiz.html" class="action-button">📝 Self Assessment</a>
+                            <a href="awareness.html" class="action-button" style="background: #ed8936;">📚 Learn More</a>
+                            <a href="index.html" class="action-button" style="background: #9f7aea;">🏠 Home</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="kiosk-footer">
+        <div class="container">
+            <div class="privacy-notice" style="background: #fef5e7; border-color: #ed8936;">
+                <p>💫 <strong>Daily practice:</strong> Reading affirmations regularly can help rewire your brain for more positive thinking.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const affirmations = [
+            { text: "I am worthy of love and kindness", category: "Self-Worth", icon: "💝" },
+            { text: "My feelings are valid and important", category: "Emotions", icon: "💭" },
+            { text: "I am doing the best I can today", category: "Growth", icon: "🌱" },
+            { text: "It's okay to ask for help", category: "Support", icon: "🤝" },
+            { text: "I am stronger than I know", category: "Strength", icon: "💪" },
+            { text: "Progress, not perfection", category: "Growth", icon: "📈" },
+            { text: "I am enough, just as I am", category: "Self-Worth", icon: "✨" },
+            { text: "This difficult moment will pass", category: "Hope", icon: "🌅" },
+            { text: "I deserve peace and happiness", category: "Self-Worth", icon: "☮️" },
+            { text: "I choose to be kind to myself", category: "Self-Compassion", icon: "🌸" },
+            { text: "My mental health matters", category: "Mental Health", icon: "🧠" },
+            { text: "I am brave for facing my challenges", category: "Strength", icon: "🦁" },
+            { text: "Every small step forward counts", category: "Growth", icon: "👣" },
+            { text: "I trust myself to handle what comes", category: "Strength", icon: "🛡️" },
+            { text: "I am worthy of rest and self-care", category: "Self-Worth", icon: "🌟" },
+            { text: "It's okay to not be okay sometimes", category: "Emotions", icon: "🌧️" },
+            { text: "I am not alone in this journey", category: "Support", icon: "👥" },
+            { text: "Better days are ahead", category: "Hope", icon: "🌈" },
+            { text: "I celebrate my progress, no matter how small", category: "Growth", icon: "🎉" },
+            { text: "I forgive myself for my mistakes", category: "Self-Compassion", icon: "💚" },
+            { text: "I am growing and learning every day", category: "Growth", icon: "🌿" },
+            { text: "I allow myself to feel my emotions", category: "Emotions", icon: "💗" },
+            { text: "Asking for help is a sign of strength", category: "Support", icon: "💬" },
+            { text: "I am becoming a better version of myself", category: "Growth", icon: "🦋" },
+            { text: "I choose hope over fear", category: "Hope", icon: "🕊️" },
+            { text: "I accept myself completely", category: "Self-Worth", icon: "🙏" },
+            { text: "I have overcome challenges before, and I can do it again", category: "Strength", icon: "🏔️" },
+            { text: "I am learning healthy ways to cope", category: "Mental Health", icon: "🧘" },
+            { text: "I speak to myself with love and respect", category: "Self-Compassion", icon: "💕" },
+            { text: "Good things are coming my way", category: "Hope", icon: "🌟" }
+        ];
+
+        let currentIndex = 0;
+
+        function displayAffirmation(index) {
+            const affirmation = affirmations[index];
+            document.getElementById('affirmationText').textContent = affirmation.text;
+            document.getElementById('affirmationCategory').textContent = affirmation.category;
+            document.getElementById('affirmationIcon').textContent = affirmation.icon;
+        }
+
+        function showNextAffirmation() {
+            currentIndex = (currentIndex + 1) % affirmations.length;
+            displayAffirmation(currentIndex);
+        }
+
+        function showPreviousAffirmation() {
+            currentIndex = (currentIndex - 1 + affirmations.length) % affirmations.length;
+            displayAffirmation(currentIndex);
+        }
+
+        function showRandomAffirmation() {
+            currentIndex = Math.floor(Math.random() * affirmations.length);
+            displayAffirmation(currentIndex);
+        }
+
+        // Initialize
+        displayAffirmation(0);
+    </script>
+</body>
+</html>
