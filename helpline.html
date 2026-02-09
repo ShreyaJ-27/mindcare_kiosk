@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>Helpline Numbers - MindCare Kiosk</title>
+    <link rel="stylesheet" href="kiosk-style.css">
+    <style>
+        .helpline-container {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .helpline-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .helpline-card {
+            background: white;
+            border-radius: 20px;
+            padding: 35px;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+            border-left: 8px solid;
+        }
+
+        .helpline-card.crisis {
+            border-left-color: #f56565;
+        }
+
+        .helpline-card.counseling {
+            border-left-color: #4299e1;
+        }
+
+        .helpline-card.support {
+            border-left-color: #48bb78;
+        }
+
+        .helpline-card.specialized {
+            border-left-color: #9f7aea;
+        }
+
+        .helpline-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .helpline-icon {
+            font-size: 50px;
+        }
+
+        .helpline-title {
+            font-size: 32px;
+            font-weight: 700;
+            color: #333;
+        }
+
+        .helpline-number {
+            background: #f7fafc;
+            padding: 20px;
+            border-radius: 12px;
+            margin: 15px 0;
+        }
+
+        .number-label {
+            font-size: 20px;
+            color: #666;
+            margin-bottom: 8px;
+        }
+
+        .number-value {
+            font-size: 36px;
+            font-weight: 900;
+            color: #667eea;
+            letter-spacing: 1px;
+        }
+
+        .helpline-details {
+            font-size: 22px;
+            color: #555;
+            line-height: 1.7;
+            margin-bottom: 10px;
+        }
+
+        .availability {
+            display: inline-block;
+            background: #48bb78;
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 18px;
+            font-weight: 600;
+            margin-top: 10px;
+        }
+
+        .category-header {
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            margin-bottom: 25px;
+            text-align: center;
+        }
+
+        .category-header h2 {
+            font-size: 38px;
+            color: #667eea;
+            margin-bottom: 10px;
+        }
+
+        .category-header p {
+            font-size: 24px;
+            color: #666;
+        }
+
+        @media (max-width: 768px) {
+            .helpline-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Kiosk Security -->
+    <script>
+        document.addEventListener("contextmenu", e => e.preventDefault());
+        document.addEventListener("keydown", e => {
+            if (e.key === "F12" || (e.ctrlKey && e.shiftKey)) e.preventDefault();
+        });
+    </script>
+
+    <!-- Back Button -->
+    <a href="index.html" class="back-button">← Home</a>
+
+    <!-- Header -->
+    <div class="page-header">
+        <h1>📞 Mental Health Helplines</h1>
+        <p>Talk to someone who cares - you're not alone</p>
+    </div>
+
+    <!-- Main Content -->
+    <main class="kiosk-main">
+        <div class="container">
+            <div class="helpline-container">
+                
+                <!-- Crisis & Emergency Section -->
+                <div class="category-header" style="background: linear-gradient(135deg, #f56565 0%, #c53030 100%); color: white;">
+                    <h2>🚨 Crisis & Emergency Helplines</h2>
+                    <p>Available 24/7 for immediate support</p>
+                </div>
+
+                <div class="helpline-grid">
+                    <div class="helpline-card crisis">
+                        <div class="helpline-header">
+                            <div class="helpline-icon">🆘</div>
+                            <div class="helpline-title">Suicide Prevention</div>
+                        </div>
+                        <div class="helpline-number">
+                            <div class="number-label">Call Now:</div>
+                            <div class="number-value">9152987821</div>
+                        </div>
+                        <p class="helpline-details">
+                            iCall Psychosocial Helpline by TISS. Professional counselors provide immediate crisis intervention and emotional support.
+                        </p>
+                        <span class="availability">24/7 Available</span>
+                    </div>
+
+                    <div class="helpline-card crisis">
+                        <div class="helpline-header">
+                            <div class="helpline-icon">📞</div>
+                            <div class="helpline-title">Vandrevala Foundation</div>
+                        </div>
+                        <div class="helpline-number">
+                            <div class="number-label">Toll-Free:</div>
+                            <div class="number-value">1860-2662-345</div>
+                        </div>
+                        <p class="helpline-details">
+                            Free 24/7 mental health support and crisis intervention. Trained professionals available in multiple languages.
+                        </p>
+                        <span class="availability">24/7 Available</span>
+                    </div>
+
+                    <div class="helpline-card crisis">
+                        <div class="helpline-header">
+                            <div class="helpline-icon">🏥</div>
+                            <div class="helpline-title">Kiran Mental Health</div>
+                        </div>
+                        <div class="helpline-number">
+                            <div class="number-label">Toll-Free:</div>
+                            <div class="number-value">1800-599-0019</div>
+                        </div>
+                        <p class="helpline-details">
+                            Government of India helpline providing mental health rehabilitation and support across the country.
+                        </p>
+                        <span class="availability">24/7 Available</span>
+                    </div>
+
+                    <div class="helpline-card crisis">
+                        <div class="helpline-header">
+                            <div class="helpline-icon">🚑</div>
+                            <div class="helpline-title">Emergency Services</div>
+                        </div>
+                        <div class="helpline-number">
+                            <div class="number-label">Emergency Number:</div>
+                            <div class="number-value">112</div>
+                        </div>
+                        <p class="helpline-details">
+                            For life-threatening emergencies. Will connect you to police, ambulance, or fire services immediately.
+                        </p>
+                        <span class="availability">24/7 Available</span>
+                    </div>
+                </div>
+
+                <!-- Counseling Services -->
+                <div class="category-header">
+                    <h2>💬 Counseling & Support</h2>
+                    <p>Talk to trained counselors</p>
+                </div>
+
+                <div class="helpline-grid">
+                    <div class="helpline-card counseling">
+                        <div class="helpline-header">
+                            <div class="helpline-icon">🎧</div>
+                            <div class="helpline-title">iCall by TISS</div>
+                        </div>
+                        <div class="helpline-number">
+                            <div class="number-label">Phone:</div>
+                            <div class="number-value">9152987821</div>
+                        </div>
+                        <div class="helpline-number">
+                            <div class="number-label">Email:</div>
+                            <div class="number-value" style="font-size: 24px;">icall@tiss.edu</div>
+                        </div>
+                        <p class="helpline-details">
+                            Professional psychological counseling service. All calls are confidential.
+                        </p>
+                        <span class="availability">Mon-Sat: 8 AM - 10 PM</span>
+                    </div>
+
+                    <div class="helpline-card counseling">
+                        <div class="helpline-header">
+                            <div class="helpline-icon">💙</div>
+                            <div class="helpline-title">Mann Talks</div>
+                        </div>
+                        <div class="helpline-number">
+                            <div class="number-label">Phone:</div>
+                            <div class="number-value">8686139139</div>
+                        </div>
+                        <p class="helpline-details">
+                            Youth-focused mental health support providing counseling and guidance for young people.
+                        </p>
+                        <span class="availability">Mon-Sat: 10 AM - 6 PM</span>
+                    </div>
+
+                    <div class="helpline-card counseling">
+                        <div class="helpline-header">
+                            <div class="helpline-icon">🌸</div>
+                            <div class="helpline-title">Snehi Foundation</div>
+                        </div>
+                        <div class="helpline-number">
+                            <div class="number-label">Phone:</div>
+                            <div class="number-value">9899988834</div>
+                        </div>
+                        <p class="helpline-details">
+                            Emotional support and suicide prevention helpline based in Delhi NCR.
+                        </p>
+                        <span class="availability">Daily: 8 AM - 10 PM</span>
+                    </div>
+
+                    <div class="helpline-card counseling">
+                        <div class="helpline-header">
+                            <div class="helpline-icon">🤝</div>
+                            <div class="helpline-title">Connecting Trust</div>
+                        </div>
+                        <div class="helpline-number">
+                            <div class="number-label">Phone:</div>
+                            <div class="number-value">9922001122</div>
+                        </div>
+                        <p class="helpline-details">
+                            Pune-based emotional support helpline offering counseling and crisis intervention.
+                        </p>
+                        <span class="availability">Mon-Sat: 12 PM - 8 PM</span>
+                    </div>
+                </div>
+
+                <!-- Specialized Support -->
+                <div class="category-header">
+                    <h2>🌟 Specialized Support Services</h2>
+                    <p>Focused support for specific needs</p>
+                </div>
+
+                <div class="helpline-grid">
+                    <div class="helpline-card specialized">
+                        <div class="helpline-header">
+                            <div class="helpline-icon">👧</div>
+                            <div class="helpline-title">Child Helpline</div>
+                        </div>
+                        <div class="helpline-number">
+                            <div class="number-label">Toll-Free:</div>
+                            <div class="number-value">1098</div>
+                        </div>
+                        <p class="helpline-details">
+                            For children in distress. Provides support, protection, and connects to appropriate services.
+                        </p>
+                        <span class="availability">24/7 Available</span>
+                    </div>
+
+                    <div class="helpline-card specialized">
+                        <div class="helpline-header">
+                            <div class="helpline-icon">👩</div>
+                            <div class="helpline-title">Women's Helpline</div>
+                        </div>
+                        <div class="helpline-number">
+                            <div class="number-label">Toll-Free:</div>
+                            <div class="number-value">181</div>
+                        </div>
+                        <p class="helpline-details">
+                            For women in distress. Mental health support, counseling, and emergency assistance.
+                        </p>
+                        <span class="availability">24/7 Available</span>
+                    </div>
+
+                    <div class="helpline-card specialized">
+                        <div class="helpline-header">
+                            <div class="helpline-icon">👨‍👩‍👧</div>
+                            <div class="helpline-title">Senior Citizens Helpline</div>
+                        </div>
+                        <div class="helpline-number">
+                            <div class="number-label">Toll-Free:</div>
+                            <div class="number-value">14567</div>
+                        </div>
+                        <p class="helpline-details">
+                            Support for senior citizens including mental health counseling and assistance.
+                        </p>
+                        <span class="availability">24/7 Available</span>
+                    </div>
+
+                    <div class="helpline-card specialized">
+                        <div class="helpline-header">
+                            <div class="helpline-icon">🏳️‍🌈</div>
+                            <div class="helpline-title">LGBTQ+ Support</div>
+                        </div>
+                        <div class="helpline-number">
+                            <div class="number-label">Phone:</div>
+                            <div class="number-value">9077-LGBTQ (54278)</div>
+                        </div>
+                        <p class="helpline-details">
+                            Humsafar Trust - Support and counseling for LGBTQ+ individuals and mental health.
+                        </p>
+                        <span class="availability">Mon-Sat: 11 AM - 7 PM</span>
+                    </div>
+                </div>
+
+                <!-- Important Information -->
+                <div class="content-card" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; margin-top: 40px;">
+                    <h2 style="color: white;">💡 Important Things to Know</h2>
+                    <p style="color: white; font-size: 24px; line-height: 1.8;">
+                        ✓ <strong>All calls are confidential</strong> - Your privacy is protected<br>
+                        ✓ <strong>No judgment</strong> - Counselors are trained to listen and help<br>
+                        ✓ <strong>Free services</strong> - Most helplines are free to call<br>
+                        ✓ <strong>Available in multiple languages</strong> - Hindi, English, and regional languages<br>
+                        ✓ <strong>Professional support</strong> - Trained mental health professionals<br>
+                        ✓ <strong>You deserve help</strong> - Reaching out is a sign of strength
+                    </p>
+                </div>
+
+                <!-- Action Buttons -->
+                <div style="text-align: center; margin-top: 50px;">
+                    <div style="background: white; padding: 40px; border-radius: 20px; box-shadow: 0 6px 20px rgba(0,0,0,0.1);">
+                        <h3 style="font-size: 36px; color: #667eea; margin-bottom: 30px;">Need More Support?</h3>
+                        <div style="display: flex; gap: 20px; justify-content: center; flex-wrap: wrap;">
+                            <a href="emergency.html" class="action-button" style="background: #f56565;">🆘 Emergency Help</a>
+                            <a href="tools.html" class="action-button" style="background: #48bb78;">🌱 Coping Tools</a>
+                            <a href="quiz.html" class="action-button">📝 Self Assessment</a>
+                            <a href="index.html" class="action-button" style="background: #9f7aea;">🏠 Home</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="kiosk-footer">
+        <div class="container">
+            <div class="privacy-notice">
+                <p>🔒 <strong>All helpline calls are private and confidential.</strong> You're taking a brave step by reaching out.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
